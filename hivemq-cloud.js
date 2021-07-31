@@ -4,8 +4,8 @@ var options = {
     host: '756ba3dd98bb4d408c92b49a8d8d4cbe.s1.eu.hivemq.cloud',
     port: 8883,
     protocol: 'mqtts',
-    username: 'wivwiv',
-    password: 'EMQemq1100'
+    username: process.env.HIVEMQ_CLOUD_CLIENT_USERNAME,
+    password: process.env.HIVEMQ_CLOUD_CLIENT_PASSWORD,
 }
 
 //initialize the MQTT client

@@ -1,9 +1,12 @@
+/**
+ * Subscribe +/# and count public mqtt broker `test.mosquitto.org` msg num and payload size
+ */
 const mqtt = require('mqtt')
 const redis = require("redis");
 const client = redis.createClient({
-  host: 'redis-12846.c1.asia-northeast1-1.gce.cloud.redislabs.com',
-  port: 12846,
-  password: 'WIVwiv5017'
+  host: process.env.REDIS_ADDRESS,
+  port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSEORD || null
 });
 
 client.on('error', function(error) {
