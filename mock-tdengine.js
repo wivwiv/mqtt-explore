@@ -1,7 +1,7 @@
 const mqtt = require('mqtt')
 const Mock = require('mockjs')
 const EMQX_SERVER = 'mqtt://localhost:1883'
-const CLIENT_NUM = 10
+const CLIENT_NUM = 30
 const STEP = 5000 // 模拟采集时间间隔 ms
 const AWAIT = 100 // 每次发送完后休眠时间，防止消息速率过快 ms
 const CLIENT_POOL = []
