@@ -2,31 +2,16 @@
  * Test free & public online mqtt broker connection
  */
 const mqtt = require('mqtt')
-const sqlite3 = require('sqlite3').verbose()
 const path = require('path')
+const mysql = require('mysql2');
+const { exec } = require('child_process');
 
-
-const sql = `
-CREATE TABLE event(
-  id INTEGER PRIMARY KEY autoincrement,
-  name VARCHAR(50),
-  event varchar(50),
-  created_at DATETIME default (datetime('now', 'localtime'))
-);
-
-CREATE TABLE msg_log(
-  id INTEGER PRIMARY KEY autoincrement,
-  name VARCHAR(50),
-  duration FLOAT DEFAULT 0,
-  created_at DATETIME default (datetime('now', 'localtime'))
-);
-`
-
-const db = new sqlite3.Database(
-  path.join(__dirname, './free-public-broker.db')
-)
-db.serialize(function() {
-  db.run(sql, () => {})
+const connection = mysql.createConnection({
+  host: process.env.MYSQL_HOST || 'localhost',
+  port: process.env.MYSQL_PORT || 3306,
+  user: process.env.MYSQL_USER || 'root',
+  password: process.env.MYSQL_PASSWORD || '123456',
+  database: 'msg_log'
 })
 
 
@@ -35,6 +20,7 @@ function createClient(url, name = 'noname', options = { }) {
   return new Promise((resolve, reject) => {
     const client = mqtt.connect(url, {
       keepalive: 60,
+      connectTimeout: 15 * 1000,
       ...options,
     })
     client.on('connect', () => {
@@ -44,11 +30,12 @@ function createClient(url, name = 'noname', options = { }) {
       })
       setInterval(() => {
         client.publish('emqx/10-free-publish-broker-for-test', JSON.stringify({ start: Date.now() }))
-      }, 15 * 1000)
+      }, 5 * 1000)
       resolve(client)
     })
     client.on('error', (err) => {
       console.log(`${name} error`)
+      console.error(err)
     })
     client.on('reconnect', (error) => {
       const obj = {
@@ -57,23 +44,32 @@ function createClient(url, name = 'noname', options = { }) {
         now: new Date()
       }
       console.log(`${name} reconnect`)
-      db.run(`INSERT INTO event(name, event, created_at) VALUES ('${obj.name}', 'reconnect', '${obj.now}')`)
+      // db.run(`INSERT INTO event(name, event, created_at) VALUES ('${obj.name}', 'reconnect', '${obj.now}')`)
     })
     client.on('message', (topic, payload) => {
       const obj = {
         name,
-        now: Date.now(),
+        now: Math.floor(Date.now() / 1000),
         complete: true
       }
       try {
         const data = JSON.parse(payload.toString())
         const duration = Date.now() - data.start
         obj.duration = duration
+        connection.execute(
+          `INSERT INTO msg_log(name, duration, created_at) VALUES ('${obj.name}', ${obj.duration}, FROM_UNIXTIME(${obj.now}))`,
+          (err, result) => {
+            if (!err) {
+              console.log(obj.name, 'save success')
+            } else {
+              console.log(obj.name, 'save error', err)
+            }
+          }
+        )
       } catch (e) {
         obj.duration = -1
         obj.complete = false
       }
-      db.run(`INSERT INTO msg_log(name, duration, created_at) VALUES ('${obj.name}', ${obj.duration}, '${obj.now}')`)
     })
   })
 }
@@ -88,23 +84,17 @@ const list = [
     name: 'HiveMQ'
   },
   // {
-  //   url: 'wss://mqtt.eclipse.org',
+  //   url: 'mqtt://mqtt.eclipse.org:1883',
   //   name: 'Eclipse'
   // },
   {
     url: 'mqtt://test.mosquitto.org:1883',
     name: 'Mosquitto'
   },
-  // {
-  //   url: 'mqtt://mqtt.fluux.io:1883',
-  //   name: 'Fluux',
-  //   option: {}
-  // },
-  // {
-  //   url: 'mqtt://mqtt.dioty.co:1883',
-  //   name: 'Flespi',
-  //   option: {}
-  // },
+  {
+    url: 'mqtt://broker-cn.emqx.io:1883',
+    name: 'EMQ X CN'
+  },
   {
     url: 'mqtt://soldier.cloudmqtt.com:18700',
     name: 'CloudMQTT',
@@ -113,6 +103,16 @@ const list = [
       password: 'public'
     }
   }
+  // {
+  //   url: 'mqtt://mqtt.fluux.io:1883',
+  //   name: 'Fluux',
+  //   option: {}
+  // },
+  // {
+  //   url: 'mqtt://mqtt.dioty.co:1883',
+  //   name: 'Dioty',
+  //   option: {}
+  // },
 ]
 
 list.forEach((item) => {

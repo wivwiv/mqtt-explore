@@ -1,0 +1,207 @@
+[
+  {
+    "clientId": "mqttx_50e40d6c",
+    "name": "EMQ X",
+    "clean": true,
+    "protocol": "mqtt",
+    "host": "broker.emqx.io",
+    "keepalive": 60,
+    "connectTimeout": 10,
+    "reconnect": false,
+    "username": "",
+    "password": "",
+    "path": "/mqtt",
+    "port": 1883,
+    "ssl": false,
+    "certType": "",
+    "rejectUnauthorized": true,
+    "ca": "",
+    "cert": "",
+    "key": "",
+    "mqttVersion": "3.1.1",
+    "subscriptions": [],
+    "messages": [],
+    "unreadMessageCount": 0,
+    "client": {
+      "connected": false
+    },
+    "will": {
+      "lastWillTopic": "",
+      "lastWillPayload": "",
+      "lastWillQos": 0,
+      "lastWillRetain": false,
+      "properties": {
+        "contentType": ""
+      }
+    },
+    "clientIdWithTime": true,
+    "isCollection": false,
+    "collectionId": "collection_ad071371-837e-4e91-ba79-f71514b78393",
+    "id": "ea34b435-fc20-46a5-8dc6-14863dd0c2d9",
+    "orderId": 0
+  },
+  {
+    "clientId": "mqttx_28e0c276",
+    "name": "Eclipse",
+    "clean": true,
+    "protocol": "mqtt",
+    "host": "mqtt.eclipse.org",
+    "keepalive": 60,
+    "connectTimeout": 10,
+    "reconnect": false,
+    "username": "",
+    "password": "",
+    "path": "/mqtt",
+    "port": 1883,
+    "ssl": false,
+    "certType": "",
+    "rejectUnauthorized": true,
+    "ca": "",
+    "cert": "",
+    "key": "",
+    "mqttVersion": "3.1.1",
+    "subscriptions": [],
+    "messages": [],
+    "unreadMessageCount": 0,
+    "client": {
+      "connected": false
+    },
+    "will": {
+      "lastWillTopic": "",
+      "lastWillPayload": "",
+      "lastWillQos": 0,
+      "lastWillRetain": false,
+      "properties": {
+        "contentType": ""
+      }
+    },
+    "clientIdWithTime": true,
+    "isCollection": false,
+    "collectionId": "collection_ad071371-837e-4e91-ba79-f71514b78393",
+    "id": "e3a7d466-68ab-4e9f-99c4-4731d9854e7a",
+    "orderId": 2
+  },
+  {
+    "clientId": "mqttx_2cba06d0",
+    "name": "Mosquitto",
+    "clean": true,
+    "protocol": "mqtt",
+    "host": "test.mosquitto.org",
+    "keepalive": 60,
+    "connectTimeout": 15,
+    "reconnect": false,
+    "username": "",
+    "password": "",
+    "path": "/mqtt",
+    "port": 1883,
+    "ssl": false,
+    "certType": "",
+    "rejectUnauthorized": true,
+    "ca": "",
+    "cert": "",
+    "key": "",
+    "mqttVersion": "3.1.1",
+    "subscriptions": [],
+    "messages": [],
+    "unreadMessageCount": 0,
+    "client": {
+      "connected": false
+    },
+    "will": {
+      "lastWillTopic": "",
+      "lastWillPayload": "",
+      "lastWillQos": 0,
+      "lastWillRetain": false,
+      "properties": {
+        "contentType": ""
+      }
+    },
+    "clientIdWithTime": true,
+    "isCollection": false,
+    "collectionId": "collection_ad071371-837e-4e91-ba79-f71514b78393",
+    "id": "2baf3998-661d-42eb-abfb-28c4d0bda327",
+    "orderId": 3
+  },
+  {
+    "clientId": "mqttx_0801bc2b",
+    "name": "HiveMQ",
+    "clean": true,
+    "protocol": "mqtt",
+    "host": "broker.hivemq.com",
+    "keepalive": 60,
+    "connectTimeout": 10,
+    "reconnect": false,
+    "username": "",
+    "password": "",
+    "path": "/mqtt",
+    "port": 1883,
+    "ssl": false,
+    "certType": "",
+    "rejectUnauthorized": true,
+    "ca": "",
+    "cert": "",
+    "key": "",
+    "mqttVersion": "3.1.1",
+    "subscriptions": [],
+    "messages": [],
+    "unreadMessageCount": 0,
+    "client": {
+      "connected": false
+    },
+    "will": {
+      "lastWillTopic": "",
+      "lastWillPayload": "",
+      "lastWillQos": 0,
+      "lastWillRetain": false,
+      "properties": {
+        "contentType": ""
+      }
+    },
+    "clientIdWithTime": false,
+    "isCollection": false,
+    "collectionId": "collection_ad071371-837e-4e91-ba79-f71514b78393",
+    "id": "368af52c-f857-4c60-866d-ce2fdd1ee393",
+    "orderId": 4
+  },
+  {
+    "clientId": "mqttx_54f3d62a",
+    "name": "EMQ X CN",
+    "clean": true,
+    "protocol": "mqtt",
+    "host": "broker-cn.emqx.io",
+    "keepalive": 60,
+    "connectTimeout": 10,
+    "reconnect": false,
+    "username": "",
+    "password": "",
+    "path": "/mqtt",
+    "port": 1883,
+    "ssl": false,
+    "certType": "",
+    "rejectUnauthorized": true,
+    "ca": "",
+    "cert": "",
+    "key": "",
+    "mqttVersion": "3.1.1",
+    "subscriptions": [],
+    "messages": [],
+    "unreadMessageCount": 0,
+    "client": {
+      "connected": false
+    },
+    "will": {
+      "lastWillTopic": "",
+      "lastWillPayload": "",
+      "lastWillQos": 0,
+      "lastWillRetain": false,
+      "properties": {
+        "contentType": ""
+      }
+    },
+    "clientIdWithTime": false,
+    "isCollection": false,
+    "collectionId": "collection_ad071371-837e-4e91-ba79-f71514b78393",
+    "id": "f7edecf3-634a-4138-8239-d9bd0a1b4337",
+    "orderId": 1
+  }
+]
