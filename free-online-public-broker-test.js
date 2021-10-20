@@ -83,10 +83,10 @@ const list = [
     url: 'mqtt://broker.hivemq.com:1883',
     name: 'HiveMQ'
   },
-  // {
-  //   url: 'mqtt://mqtt.eclipse.org:1883',
-  //   name: 'Eclipse'
-  // },
+  {
+    url: 'mqtt://mqtt.eclipseprojects.io:1883',
+    name: 'Eclipse'
+  },
   {
     url: 'mqtt://test.mosquitto.org:1883',
     name: 'Mosquitto'
@@ -103,16 +103,6 @@ const list = [
       password: 'public'
     }
   }
-  // {
-  //   url: 'mqtt://mqtt.fluux.io:1883',
-  //   name: 'Fluux',
-  //   option: {}
-  // },
-  // {
-  //   url: 'mqtt://mqtt.dioty.co:1883',
-  //   name: 'Dioty',
-  //   option: {}
-  // },
 ]
 
 list.forEach((item) => {
