@@ -25,11 +25,11 @@ function createClient(url, name = 'noname', options = { }) {
     })
     client.on('connect', () => {
       console.log(`${name} connected`)
-      client.subscribe('emqx/10-free-publish-broker-for-test', (err) => {
+      client.subscribe('emqx/free-publish-broker-for-test', (err) => {
         console.log(`${name} subscribe`)
       })
       setInterval(() => {
-        client.publish('emqx/10-free-publish-broker-for-test', JSON.stringify({ start: Date.now() }))
+        client.publish('emqx/free-publish-broker-for-test', JSON.stringify({ start: Date.now() }))
       }, 5 * 1000)
       resolve(client)
     })

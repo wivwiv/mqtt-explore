@@ -45,7 +45,7 @@
     "name": "Eclipse",
     "clean": true,
     "protocol": "mqtt",
-    "host": "mqtt.eclipse.org",
+    "host": "mqtt.eclipseprojects.io",
     "keepalive": 60,
     "connectTimeout": 10,
     "reconnect": false,
