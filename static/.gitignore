@@ -1,2 +1,3 @@
 *.png
 !emqx-logo.png
+*.sql

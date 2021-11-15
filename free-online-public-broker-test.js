@@ -2,18 +2,24 @@
  * Test free & public online mqtt broker connection
  */
 const mqtt = require('mqtt')
+const mysql = require('mysql2')
+const fs = require('fs')
 const path = require('path')
-const mysql = require('mysql2');
-const { exec } = require('child_process');
 
-const connection = mysql.createConnection({
-  host: process.env.MYSQL_HOST || 'localhost',
-  port: process.env.MYSQL_PORT || 3306,
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || '123456',
-  database: 'msg_log'
-})
+const ENABLE_MYSQL = !!process.env.ENABLE_MYSQL
 
+let connection = null
+
+if (ENABLE_MYSQL) {
+  connection = mysql.createConnection({
+    host: process.env.MYSQL_HOST || 'localhost',
+    port: process.env.MYSQL_PORT || 3306,
+    user: process.env.MYSQL_USER || 'root',
+    password: process.env.MYSQL_PASSWORD || '123456',
+    database: 'msg_log'
+  })
+}
+console.log(`start with ENABLE_MYSQL = ${ENABLE_MYSQL}`)
 
 
 function createClient(url, name = 'noname', options = { }) {
@@ -56,16 +62,22 @@ function createClient(url, name = 'noname', options = { }) {
         const data = JSON.parse(payload.toString())
         const duration = Date.now() - data.start
         obj.duration = duration
-        connection.execute(
-          `INSERT INTO msg_log(name, duration, created_at) VALUES ('${obj.name}', ${obj.duration}, FROM_UNIXTIME(${obj.now}))`,
-          (err, result) => {
-            if (!err) {
-              console.log(obj.name, 'save success')
-            } else {
-              console.log(obj.name, 'save error', err)
+        const sql = `INSERT INTO msg_log(name, duration, created_at) VALUES ('${obj.name}', ${obj.duration}, FROM_UNIXTIME(${obj.now}));`
+        if (ENABLE_MYSQL) {
+          connection.execute(
+            sql,
+            (err, result) => {
+              if (!err) {
+                console.log(obj.name, 'save success')
+              } else {
+                console.log(obj.name, 'save error', err)
+              }
             }
-          }
-        )
+          )
+        } else {
+          fs.appendFileSync(path.join(__dirname, './static/free-online-public-broker-test.sql'), sql + '\n')
+          console.log(obj.name, 'append success')
+        }
       } catch (e) {
         obj.duration = -1
         obj.complete = false
