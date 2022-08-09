@@ -1141,10 +1141,10 @@ ms@^2.1.1:
   resolved "https://registry.nlark.com/ms/download/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=
 
-mysql2@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.npmmirror.com/mysql2/download/mysql2-2.3.2.tgz#3efe9814dbf1c2a3d7c2a1fc4666235939943ff9"
-  integrity sha1-Pv6YFNvxwqPXwqH8RmYjWTmUP/k=
+mysql2@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.npmmirror.com/mysql2/-/mysql2-2.3.3.tgz#944f3deca4b16629052ff8614fbf89d5552545a0"
+  integrity sha512-wxJUev6LgMSgACDkb/InIFxDprRa6T95+VEoR+xPvtngtccNH2dGjEB/fVZ8yg1gWv1510c9CvXuJHi5zUm0ZA==
   dependencies:
     denque "^2.0.1"
     generate-function "^2.3.1"
