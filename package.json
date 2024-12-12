@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/pubsub": "^3.1.1",
+    "axios": "^1.7.9",
     "body-parser": "^1.19.0",
     "coap": "^0.23.1",
     "dateformat": "^4.3.1",
@@ -13,6 +15,7 @@
     "mqtt": "^3.0.0",
     "mysql2": "^2.3.3",
     "node-schedule": "^2.0.0",
+    "protobufjs": "^7.2.5",
     "redis": "^3.1.2",
     "sqlite3": "^5.0.2",
     "ws": "^7.2.0"

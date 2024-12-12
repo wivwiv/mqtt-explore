@@ -1,6 +1,7 @@
 const mqtt = require('mqtt')
 
-const client = mqtt.connect('mqtt://localhost:1883', 
+const client = 
+mqtt.connect('mqtt://[240e:34c:4c:f470:1:cdec:8062:7c6b]:1883', 
 {
   protocolVersion: 5,
   properties: {
@@ -12,7 +13,7 @@ const client = mqtt.connect('mqtt://localhost:1883',
 })
 
 client.on('connect', () => {
-  client.subscribe(['t/1', 'f/1'], {
+  client.subscribe('t/1', {
     qos: 2
   })
   console.log('connected')
